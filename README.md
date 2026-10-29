@@ -1011,3 +1011,4 @@ To serve the production build locally: `npx http-server dist/angular-mastery-sho
 - SSR and the service worker are **documented but not enabled**.
 - Strict TypeScript is on: `strict`, `noImplicitOverride`, `noUncheckedIndexedAccess`.
 - Not verified: I could not run `ng serve` or open the pages in a browser in my environment. `ng build` and `ng test` pass, so click through each page once yourself.
+"# Angular_Mastery_ShubhamaySarkar_Lucifer" 
