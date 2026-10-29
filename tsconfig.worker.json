@@ -1,0 +1,6 @@
+/* Used only for *.worker.ts files (Web Workers run in their own global scope, so they need the "webworker" lib). */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "outDir": "./out-tsc/worker", "lib": ["es2022", "webworker"], "types": [] },
+  "include": ["src/**/*.worker.ts"]
+}

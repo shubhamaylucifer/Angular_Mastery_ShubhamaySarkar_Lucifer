@@ -1,0 +1,67 @@
+/*
+ * ============================================================================
+ * FILE: styles.scss  (GLOBAL styles - apply to the whole app)
+ * ============================================================================
+ * WHAT IS THIS?   CSS that every component can use (buttons, cards, grids).
+ * ANALOGY         The "house rules" of a building; each room (component) may
+ *                 also have its own private rules (component styles).
+ * WHY?            Without shared classes, every demo would copy-paste the same
+ *                 100 lines of CSS.
+ * MISTAKE         Putting component-specific CSS here. Anything global can
+ *                 leak into every component - see Module 01 "View Encapsulation".
+ * ============================================================================
+ */
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --border: #dfe3ee;
+  --text: #1c2333;
+  --muted: #5d6781;
+  --accent: #3b6fe0;
+  --accent-soft: #e6edfd;
+  --ok: #1b8a4b;
+  --warn: #b7791f;
+  --err: #c0392b;
+  --sidebar: #141a2e;
+  --radius: 10px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--text); font-size: 14.5px; line-height: 1.55; }
+h1 { font-size: 1.6rem; margin: 0 0 .25rem; }
+h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+h3 { font-size: .98rem; margin: .75rem 0 .35rem; }
+code, .mono { font-family: Consolas, 'Courier New', monospace; font-size: .88em; }
+code { background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+pre { background: #101524; color: #e6e9f5; padding: .75rem 1rem; border-radius: 8px; overflow: auto; font-size: .82rem; margin: .5rem 0; }
+pre code { background: transparent; padding: 0; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.ok { color: var(--ok); } .warn { color: var(--warn); } .err { color: var(--err); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; margin-bottom: 1rem; }
+.row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.stack { display: flex; flex-direction: column; gap: .5rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem; }
+.box { border: 1px dashed var(--border); border-radius: 8px; padding: .6rem .8rem; background: #fafbff; }
+.badge { display: inline-block; font-size: .72rem; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.badge.Beginner { background: #e3f6ea; color: var(--ok); }
+.badge.Intermediate { background: #fff3d9; color: var(--warn); }
+.badge.Advanced { background: #fde6e3; color: var(--err); }
+
+.btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); padding: .38rem .8rem; border-radius: 7px; cursor: pointer; font: inherit; }
+.btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid #9db8f5; outline-offset: 1px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.danger { background: var(--err); border-color: var(--err); color: #fff; }
+
+input, select, textarea { font: inherit; padding: .35rem .55rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; }
+label { font-weight: 600; font-size: .85rem; display: block; margin-bottom: .15rem; }
+.field-error { color: var(--err); font-size: .8rem; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { border-bottom: 1px solid var(--border); padding: .3rem .5rem; text-align: left; }
+ul.plain { list-style: none; padding: 0; margin: 0; }

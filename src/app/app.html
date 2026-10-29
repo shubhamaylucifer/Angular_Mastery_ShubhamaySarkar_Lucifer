@@ -1,0 +1,58 @@
+<!--
+  FILE: app.html - the shell template.
+  WHAT: sidebar (Beginner -> Advanced), breadcrumb header, routed canvas.
+  ANALOGY: a building lobby with a directory board, a "you are here" sign and
+           the rooms (pages) behind the door (<router-outlet>).
+  MISTAKE: using href="..." instead of routerLink - href reloads the whole page
+           and throws away the app state; routerLink navigates without reload.
+-->
+<div class="shell">
+  <nav class="sidebar" aria-label="Curriculum">
+    <a class="brand" routerLink="/">Angular Mastery<br /><small>Showcase</small></a>
+
+    <!-- @for over the 3 level groups; "track" uses the unique level name. -->
+    @for (g of groups; track g.level) {
+      <h3 class="group">{{ g.level }}</h3>
+      @for (item of g.items; track item.path) {
+        <!-- routerLinkActive adds the CSS class "active" to the current link. -->
+        <a [routerLink]="['/', item.path]" routerLinkActive="active" [title]="item.summary">{{ item.title }}</a>
+      }
+    }
+  </nav>
+
+  <div class="main">
+    <header class="top">
+      <!-- Breadcrumb: "Home > 07 Routing > users > 3" -->
+      <nav aria-label="Breadcrumb" class="crumbs">
+        @for (c of crumbs(); track c.link; let last = $last) {
+          @if (last) {
+            <span aria-current="page">{{ c.label }}</span>
+          } @else {
+            <a [routerLink]="c.link">{{ c.label }}</a> <span aria-hidden="true">/</span>
+          }
+        }
+      </nav>
+
+      <div class="row session">
+        <span class="badge" title="Chosen by angular.json fileReplacements">env: {{ envName }}</span>
+        @if (cfg(); as c) {
+          <span class="muted" title="Fetched by provideAppInitializer">config @ {{ c.loadedAt }}</span>
+        }
+        @if (auth.isLoggedIn()) {
+          <span>{{ auth.user()?.name }} <span class="badge">{{ auth.role() }}</span></span>
+          <button class="btn" type="button" (click)="auth.logout()">Logout</button>
+        } @else {
+          <span class="muted">Guest</span>
+          <button class="btn" type="button" (click)="login('EDITOR')">Login as Editor</button>
+          <button class="btn" type="button" (click)="login('ADMIN')">Login as Admin</button>
+        }
+      </div>
+    </header>
+
+    <main class="canvas" id="main" tabindex="-1">
+      <router-outlet />
+    </main>
+  </div>
+</div>
+
+<app-toast-container />
